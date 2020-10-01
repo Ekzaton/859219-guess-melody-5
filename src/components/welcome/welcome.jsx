@@ -1,6 +1,7 @@
 import React from "react";
 
 const Welcome = (props) => {
+  // eslint-disable-next-line react/prop-types
   const {errorsCount} = props;
 
   return (
