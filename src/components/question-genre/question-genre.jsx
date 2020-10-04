@@ -11,7 +11,7 @@ const QuestionGenre = () => {
 
         <svg xmlns="http://www.w3.org/2000/svg" className="timer" viewBox="0 0 780 780">
           <circle className="timer__line" cx="390" cy="390" r="370"
-            style="filter: url(#blur); transform: rotate(-90deg) scaleY(-1); transform-origin: center"/>
+            style={{filter: `url(#blur)`, transform: `rotate(-90deg) scaleY(-1)`, transformOrigin: `center`}}/>
         </svg>
 
         <div className="game__mistakes">
@@ -31,7 +31,7 @@ const QuestionGenre = () => {
             </div>
             <div className="game__answer">
               <input className="game__input visually-hidden" type="checkbox" name="answer" value="answer-1" id="answer-1"/>
-              <label className="game__check" chtmlFor="answer-1">Отметить</label>
+              <label className="game__check" htmlFor="answer-1">Отметить</label>
             </div>
           </div>
 
@@ -42,7 +42,7 @@ const QuestionGenre = () => {
             </div>
             <div className="game__answer">
               <input className="game__input visually-hidden" type="checkbox" name="answer" value="answer-1" id="answer-2"/>
-              <label className="game__check" chtmlFor="answer-2">Отметить</label>
+              <label className="game__check" htmlFor="answer-2">Отметить</label>
             </div>
           </div>
 
@@ -53,7 +53,7 @@ const QuestionGenre = () => {
             </div>
             <div className="game__answer">
               <input className="game__input visually-hidden" type="checkbox" name="answer" value="answer-1" id="answer-3"/>
-              <label className="game__check" chtmlFor="answer-3">Отметить</label>
+              <label className="game__check" htmlFor="answer-3">Отметить</label>
             </div>
           </div>
 
@@ -64,7 +64,7 @@ const QuestionGenre = () => {
             </div>
             <div className="game__answer">
               <input className="game__input visually-hidden" type="checkbox" name="answer" value="answer-1" id="answer-4"/>
-              <label className="game__check" chtmlFor="answer-4">Отметить</label>
+              <label className="game__check" htmlFor="answer-4">Отметить</label>
             </div>
           </div>
 
