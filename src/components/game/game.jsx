@@ -2,8 +2,8 @@ import React, {PureComponent} from "react";
 import PropTypes from 'prop-types';
 import {Redirect} from 'react-router-dom';
 import {GameType} from '../../const';
-import ArtistQuestion from '../artist-question/artist-question';
-import GenreQuestion from '../genre-question/genre-question';
+import ArtistQuestion from '../question-artist/question-artist';
+import GenreQuestion from '../question-genre/question-genre';
 
 class Game extends PureComponent {
   constructor(props) {
