@@ -5,6 +5,8 @@ class AudioPlayer extends React.PureComponent {
   constructor(props) {
     super(props);
 
+    this._audioRef = React.createRef();
+
     this.state = {
       isLoading: true,
       isPlaying: props.isPlaying,
@@ -13,28 +15,32 @@ class AudioPlayer extends React.PureComponent {
 
   componentDidMount() {
     const {src} = this.props;
+    const audio = this._audioRef.current;
 
-    this._audio = new Audio(src);
+    audio.src = src;
 
-    this._audio.oncanplaythrough = () => this.setState({isLoading: false});
+    audio.oncanplaythrough = () => this.setState({isLoading: false});
 
-    this._audio.onplay = () => this.setState({isPlaying: true});
+    audio.onplay = () => this.setState({isPlaying: true});
 
-    this._audio.onpause = () => this.setState({isPlaying: false});
+    audio.onpause = () => this.setState({isPlaying: false});
   }
 
   componentWillUnmount() {
-    this._audio = null;
-    this._audio.oncanplaythrough = null;
-    this._audio.onplay = null;
-    this._audio.onpause = null;
+    const audio = this._audioRef.current;
+
+    audio.oncanplaythrough = null;
+    audio.onplay = null;
+    audio.onpause = null;
   }
 
   componentDidUpdate() {
+    const audio = this._audioRef.current;
+
     if (this.state.isPlaying) {
-      this._audio.play();
+      audio.play();
     } else {
-      this._audio.pause();
+      audio.pause();
     }
   }
 
@@ -50,7 +56,9 @@ class AudioPlayer extends React.PureComponent {
           onClick={() => this.setState({isPlaying: !this.state.isPlaying})}
         />
         <div className="track__status">
-          <audio />
+          <audio
+            ref={this._audioRef}
+          />
         </div>
       </React.Fragment>
     );
