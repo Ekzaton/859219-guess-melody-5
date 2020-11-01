@@ -4,6 +4,10 @@ import {Redirect} from 'react-router-dom';
 import {GameType} from '../../const';
 import ArtistQuestion from '../question-artist/question-artist';
 import GenreQuestion from '../question-genre/question-genre';
+import withActivePlayer from "../../hocs/with-active-player/with-active-player";
+
+const ArtistQuestionWrapped = withActivePlayer(ArtistQuestion);
+const GenreQuestionWrapped = withActivePlayer(GenreQuestion);
 
 class Game extends PureComponent {
   constructor(props) {
@@ -28,7 +32,7 @@ class Game extends PureComponent {
     switch (question.type) {
       case GameType.ARTIST:
         return (
-          <ArtistQuestion
+          <ArtistQuestionWrapped
             question={question}
             onAnswer={() => {
               this.setState((prevState) => ({
@@ -39,7 +43,7 @@ class Game extends PureComponent {
         );
       case GameType.GENRE:
         return (
-          <GenreQuestion
+          <GenreQuestionWrapped
             question={question}
             onAnswer={() => {
               this.setState((prevState) => ({

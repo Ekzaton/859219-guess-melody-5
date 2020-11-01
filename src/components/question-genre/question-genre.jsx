@@ -1,8 +1,8 @@
-import React, {PureComponent} from "react";
+import React from "react";
 import PropTypes from "prop-types";
-import {GameType} from "../../const";
+import questionGenreProp from "./question-genre.prop";
 
-class QuestionGenre extends PureComponent {
+class QuestionGenre extends React.PureComponent {
   constructor(props) {
     super(props);
 
@@ -12,7 +12,7 @@ class QuestionGenre extends PureComponent {
   }
 
   render() {
-    const {onAnswer, question} = this.props;
+    const {onAnswer, question, renderPlayer} = this.props;
     const {answers: userAnswers} = this.state;
     const {answers, genre} = question;
 
@@ -47,10 +47,7 @@ class QuestionGenre extends PureComponent {
           >
             {answers.map((answer, i) => (
               <div key={`${i}-${answer.src}`} className="track">
-                <button className="track__button track__button--play" type="button"/>
-                <div className="track__status">
-                  <audio src={answer.src}/>
-                </div>
+                {renderPlayer(answer.src, i)}
                 <div className="game__answer">
                   <input className="game__input visually-hidden"
                     type="checkbox"
@@ -81,14 +78,8 @@ class QuestionGenre extends PureComponent {
 
 QuestionGenre.propTypes = {
   onAnswer: PropTypes.func.isRequired,
-  question: PropTypes.shape({
-    answers: PropTypes.arrayOf(PropTypes.shape({
-      src: PropTypes.string.isRequired,
-      genre: PropTypes.string.isRequired,
-    })).isRequired,
-    genre: PropTypes.string.isRequired,
-    type: PropTypes.oneOf([GameType.ARTIST, GameType.GENRE]).isRequired,
-  }).isRequired,
+  question: questionGenreProp,
+  renderPlayer: PropTypes.func.isRequired,
 };
 
 export default QuestionGenre;
