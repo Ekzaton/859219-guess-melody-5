@@ -12,6 +12,9 @@ import Mistakes from "../mistakes/mistakes";
 
 import withActivePlayer from "../../hocs/with-active-player/with-active-player";
 
+import questionArtistProp from "../question-artist/question-artist.prop";
+import questionGenreProp from "../question-genre/question-genre.prop";
+
 const ArtistQuestionWrapped = withActivePlayer(ArtistQuestion);
 const GenreQuestionWrapped = withActivePlayer(GenreQuestion);
 
@@ -52,7 +55,9 @@ const Game = (props) => {
 };
 
 Game.propTypes = {
-  questions: PropTypes.array.isRequired,
+  questions: PropTypes.arrayOf(
+      PropTypes.oneOfType([questionArtistProp, questionGenreProp]).isRequired
+  ),
   step: PropTypes.number.isRequired,
   onUserAnswer: PropTypes.func.isRequired,
   resetGame: PropTypes.func.isRequired,
@@ -62,6 +67,7 @@ Game.propTypes = {
 const mapStateToProps = (state) => ({
   step: state.step,
   mistakes: state.mistakes,
+  questions: state.questions,
 });
 
 const mapDispatchToProps = (dispatch) => ({
