@@ -8,6 +8,7 @@ import {GameType} from '../../const';
 
 import ArtistQuestion from '../question-artist/question-artist';
 import GenreQuestion from '../question-genre/question-genre';
+import Mistakes from "../mistakes/mistakes";
 
 import withActivePlayer from "../../hocs/with-active-player/with-active-player";
 
@@ -15,7 +16,7 @@ const ArtistQuestionWrapped = withActivePlayer(ArtistQuestion);
 const GenreQuestionWrapped = withActivePlayer(GenreQuestion);
 
 const Game = (props) => {
-  const {questions, step, onUserAnswer, resetGame} = props;
+  const {questions, step, onUserAnswer, resetGame, mistakes} = props;
   const question = questions[step];
 
   if (step >= questions.length || !question) {
@@ -32,14 +33,18 @@ const Game = (props) => {
         <ArtistQuestionWrapped
           question={question}
           onAnswer={onUserAnswer}
-        />
+        >
+          <Mistakes count={mistakes}/>
+        </ArtistQuestionWrapped>
       );
     case GameType.GENRE:
       return (
         <GenreQuestionWrapped
           question={question}
           onAnswer={onUserAnswer}
-        />
+        >
+          <Mistakes count={mistakes}/>
+        </GenreQuestionWrapped>
       );
   }
 
@@ -51,10 +56,12 @@ Game.propTypes = {
   step: PropTypes.number.isRequired,
   onUserAnswer: PropTypes.func.isRequired,
   resetGame: PropTypes.func.isRequired,
+  mistakes: PropTypes.number.isRequired,
 };
 
 const mapStateToProps = (state) => ({
   step: state.step,
+  mistakes: state.mistakes,
 });
 
 const mapDispatchToProps = (dispatch) => ({
