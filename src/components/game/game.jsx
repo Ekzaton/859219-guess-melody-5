@@ -10,13 +10,13 @@ import ArtistQuestion from '../question-artist/question-artist';
 import GenreQuestion from '../question-genre/question-genre';
 import Mistakes from "../mistakes/mistakes";
 
-import withActivePlayer from "../../hocs/with-active-player/with-active-player";
+import withAudioPlayer from "../../hocs/with-audio-player/with-audio-player";
 
 import questionArtistProp from "../question-artist/question-artist.prop";
 import questionGenreProp from "../question-genre/question-genre.prop";
 
-const ArtistQuestionWrapped = withActivePlayer(ArtistQuestion);
-const GenreQuestionWrapped = withActivePlayer(GenreQuestion);
+const ArtistQuestionWrapped = withAudioPlayer(ArtistQuestion);
+const GenreQuestionWrapped = withAudioPlayer(GenreQuestion);
 
 const Game = (props) => {
   const {questions, step, onUserAnswer, resetGame, mistakes} = props;
