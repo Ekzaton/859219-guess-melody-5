@@ -57,6 +57,8 @@ const withUserAnswer = (Component) => {
     }).isRequired,
     onAnswer: PropTypes.func.isRequired,
   };
+
+  return WithUserAnswer;
 };
 
 export default withUserAnswer;

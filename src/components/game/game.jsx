@@ -4,11 +4,12 @@ import {Redirect} from 'react-router-dom';
 import {connect} from "react-redux";
 
 import {ActionCreator} from "../../store/action";
+
 import {GameType} from '../../const';
 
-import ArtistQuestion from '../question-artist/question-artist';
-import GenreQuestion from '../question-genre/question-genre';
 import Mistakes from "../mistakes/mistakes";
+import QuestionArtist from '../question-artist/question-artist';
+import QuestionGenre from '../question-genre/question-genre';
 
 import withAudioPlayer from "../../hocs/with-audio-player/with-audio-player";
 import withUserAnswer from "../../hocs/with-user-answer/with-user-answer";
@@ -16,8 +17,8 @@ import withUserAnswer from "../../hocs/with-user-answer/with-user-answer";
 import questionArtistProp from "../question-artist/question-artist.prop";
 import questionGenreProp from "../question-genre/question-genre.prop";
 
-const ArtistQuestionWrapped = withAudioPlayer(withUserAnswer(ArtistQuestion));
-const GenreQuestionWrapped = withAudioPlayer(GenreQuestion);
+const QuestionArtistWrapped = withAudioPlayer(QuestionArtist);
+const QuestionGenreWrapped = withAudioPlayer(withUserAnswer(QuestionGenre));
 
 const Game = (props) => {
   const {questions, step, onUserAnswer, resetGame, mistakes} = props;
@@ -34,21 +35,21 @@ const Game = (props) => {
   switch (question.type) {
     case GameType.ARTIST:
       return (
-        <ArtistQuestionWrapped
+        <QuestionArtistWrapped
           question={question}
           onAnswer={onUserAnswer}
         >
           <Mistakes count={mistakes}/>
-        </ArtistQuestionWrapped>
+        </QuestionArtistWrapped>
       );
     case GameType.GENRE:
       return (
-        <GenreQuestionWrapped
+        <QuestionGenreWrapped
           question={question}
           onAnswer={onUserAnswer}
         >
           <Mistakes count={mistakes}/>
-        </GenreQuestionWrapped>
+        </QuestionGenreWrapped>
       );
   }
 
