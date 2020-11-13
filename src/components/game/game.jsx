@@ -5,7 +5,7 @@ import {connect} from "react-redux";
 
 import {ActionCreator} from "../../store/action";
 
-import {GameType} from '../../const';
+import {GameType, MAX_MISTAKE_COUNT} from '../../const';
 
 import Mistakes from "../mistakes/mistakes";
 import QuestionArtist from '../question-artist/question-artist';
@@ -21,14 +21,18 @@ const QuestionArtistWrapped = withAudioPlayer(QuestionArtist);
 const QuestionGenreWrapped = withAudioPlayer(withUserAnswer(QuestionGenre));
 
 const Game = (props) => {
-  const {questions, step, onUserAnswer, resetGame, mistakes} = props;
+  const {questions, step, onUserAnswer, mistakes} = props;
   const question = questions[step];
 
-  if (step >= questions.length || !question) {
-    resetGame();
-
+  if (mistakes >= MAX_MISTAKE_COUNT) {
     return (
-      <Redirect to="/"/>
+      <Redirect to="/fail-tries"/>
+    );
+  }
+
+  if (step >= questions.length || !question) {
+    return (
+      <Redirect to="/result-success"/>
     );
   }
 
@@ -62,7 +66,6 @@ Game.propTypes = {
   ),
   step: PropTypes.number.isRequired,
   onUserAnswer: PropTypes.func.isRequired,
-  resetGame: PropTypes.func.isRequired,
   mistakes: PropTypes.number.isRequired,
 };
 
