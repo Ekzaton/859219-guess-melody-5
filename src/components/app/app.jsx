@@ -25,12 +25,22 @@ const App = () => {
         <Route exact path="/login">
           <Login/>
         </Route>
-        <Route exact path="/result-success">
-          <ResultSuccess/>
-        </Route>
-        <Route exact path="/fail-tries">
-          <FailTries/>
-        </Route>
+        <Route exact
+          path="/result-success"
+          render={({history}) => (
+            <ResultSuccess
+              onReplayButtonClick={() => history.push(`/game`)}
+            />
+          )}
+        />
+        <Route exact
+          path="/fail-tries"
+          render={({history}) => (
+            <FailTries
+              onReplayButtonClick={() => history.push(`/game`)}
+            />
+          )}
+        />
         <Route exact path="/game">
           <Game
             errorsCount={MAX_MISTAKE_COUNT}
