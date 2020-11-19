@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import {Redirect} from 'react-router-dom';
 import {connect} from "react-redux";
 
-import {ActionCreator} from "../../store/action";
+import {incrementStep, incrementMistake, resetGame} from "../../store/action";
 
 import {GameType, MAX_MISTAKE_COUNT} from '../../const';
 
@@ -76,12 +76,12 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  resetGame() {
-    dispatch(ActionCreator.resetGame());
+  resetGameAction() {
+    dispatch(resetGame());
   },
   onUserAnswer(question, answer) {
-    dispatch(ActionCreator.incrementStep());
-    dispatch(ActionCreator.incrementMistake(question, answer));
+    dispatch(incrementStep());
+    dispatch(incrementMistake(question, answer));
   },
 });
 
