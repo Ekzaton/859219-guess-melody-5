@@ -1,17 +1,20 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import {createStore} from "redux";
+import {createStore, applyMiddleware} from "redux";
 import {Provider} from "react-redux";
+import thunk from "redux-thunk";
+
+import {createAPI} from "./services/api";
 
 import {reducer} from "./store/reducer";
 
 import App from "./components/app/app";
 
+const api = createAPI();
+
 const store = createStore(
     reducer,
-    window.__REDUX_DEVTOOLS_EXTENSION__
-      ? window.__REDUX_DEVTOOLS_EXTENSION__()
-      : (f) => f
+    applyMiddleware(thunk.withExtraArgument(api))
 );
 
 ReactDOM.render(
