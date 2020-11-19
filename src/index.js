@@ -7,14 +7,14 @@ import thunk from "redux-thunk";
 import {createAPI} from "./services/api";
 
 import {fetchQuestionList} from "./store/api-action";
-import {reducer} from "./store/reducer";
+import rootReducer from "./store/reducers/root-reducer";
 
 import App from "./components/app/app";
 
 const api = createAPI();
 
 const store = createStore(
-    reducer,
+    rootReducer,
     applyMiddleware(thunk.withExtraArgument(api))
 );
 

@@ -8,7 +8,6 @@ export const ActionType = {
   LOAD_QUESTIONS: `LOAD_QUESTIONS`,
 };
 
-
 export const incrementStep = () => ({
   type: ActionType.INCREMENT_STEP,
   payload: 1,
@@ -18,7 +17,7 @@ export const resetGame = () => ({
   type: ActionType.RESET_GAME,
 });
 
-export const constincrementMistake = (question, userAnswer) => {
+export const incrementMistake = (question, userAnswer) => {
   let answerIsCorrect = false;
 
   switch (question.type) {
