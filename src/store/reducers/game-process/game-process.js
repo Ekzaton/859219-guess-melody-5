@@ -1,16 +1,13 @@
-import {ActionType} from "./action";
+import {ActionType} from "../../action";
 
-import {extend} from "../utils";
-
-import questions from "../mocks/questions";
+import {extend} from "../../../utils";
 
 const initialState = {
   mistakes: 0,
   step: 0,
-  questions,
 };
 
-export const reducer = (state = initialState, action) => {
+export const gameProcess = (state = initialState, action) => {
   switch (action.type) {
     case ActionType.INCREMENT_STEP:
       let nextStep = state.step + action.payload;
