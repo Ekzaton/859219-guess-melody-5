@@ -1,6 +1,7 @@
 import React from "react";
-import {Switch, Route, BrowserRouter} from "react-router-dom";
+import {Switch, Route, Router as BrowserRouter} from "react-router-dom";
 
+import browserHistory from "../../browser-history";
 import {MAX_MISTAKE_COUNT} from "../../const";
 
 import FailTries from "../fail-tries/fail-tries";
@@ -12,7 +13,7 @@ import Welcome from "../welcome/welcome";
 
 const App = () => {
   return (
-    <BrowserRouter>
+    <BrowserRouter history={browserHistory}>
       <Switch>
         <Route exact
           path="/"
