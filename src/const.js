@@ -8,4 +8,12 @@ export const AuthorizationStatus = {
   NO_AUTH: `NO_AUTH`,
 };
 
+export const AppRoute = {
+  LOGIN: `/login`,
+  FAIL_TRIES: `/fail-tries`,
+  RESULT_SUCCESS: `/result-success`,
+  ROOT: `/`,
+  GAME: `/game`,
+};
+
 export const MAX_MISTAKE_COUNT = 3;

@@ -2,7 +2,7 @@ import React from "react";
 import {Switch, Route, Router as BrowserRouter} from "react-router-dom";
 
 import browserHistory from "../../browser-history";
-import {MAX_MISTAKE_COUNT} from "../../const";
+import {MAX_MISTAKE_COUNT, AppRoute} from "../../const";
 
 import FailTries from "../fail-tries/fail-tries";
 import Game from "../game/game";
@@ -16,42 +16,42 @@ const App = () => {
     <BrowserRouter history={browserHistory}>
       <Switch>
         <Route exact
-          path="/"
+          path={AppRoute.ROOT}
           render={({history}) => (
             <Welcome
-              onPlayButtonClick={() => history.push(`/game`)}
+              onPlayButtonClick={() => history.push(AppRoute.GAME)}
               errorsCount={MAX_MISTAKE_COUNT}
             />
           )}
         />
         <Route exact
-          path="/login"
+          path={AppRoute.LOGIN}
           render={({history}) => (
             <Login
-              onReplayButtonClick={() => history.push(`/game`)}
+              onReplayButtonClick={() => history.push(AppRoute.GAME)}
             />
           )}
         />
         <PrivateRoute
           exact
-          path="/result-success"
+          path={AppRoute.RESULT_SUCCESS}
           render={({history}) => {
             return (
               <ResultSuccess
-                onReplayButtonClick={() => history.push(`/game`)}
+                onReplayButtonClick={() => history.push(AppRoute.GAME)}
               />
             );
           }}
         />
         <Route exact
-          path="/fail-tries"
+          path={AppRoute.FAIL_TRIES}
           render={({history}) => (
             <FailTries
-              onReplayButtonClick={() => history.push(`/game`)}
+              onReplayButtonClick={() => history.push(AppRoute.GAME)}
             />
           )}
         />
-        <Route exact path="/game">
+        <Route exact path={AppRoute.GAME}>
           <Game
             errorsCount={MAX_MISTAKE_COUNT}
           />
