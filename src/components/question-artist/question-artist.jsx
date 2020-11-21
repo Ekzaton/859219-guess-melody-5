@@ -2,6 +2,8 @@ import React from "react";
 import PropTypes from "prop-types";
 import questionArtistProp from "./question-artist.prop";
 
+import {AppRoute} from "../../const";
+
 const QuestionArtist = (props) => {
   const {onAnswer, question, renderPlayer, children} = props;
   const {answers, song} = question;
@@ -9,7 +11,7 @@ const QuestionArtist = (props) => {
   return (
     <section className="game game--artist">
       <header className="game__header">
-        <a className="game__back" href="#">
+        <a className="game__back" href={AppRoute.ROOT}>
           <span className="visually-hidden">Сыграть ещё раз</span>
           <img className="game__logo" src="img/melody-logo-ginger.png" alt="Угадай мелодию"/>
         </a>

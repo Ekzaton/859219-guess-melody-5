@@ -5,7 +5,7 @@ import {connect} from "react-redux";
 
 import {incrementStep, incrementMistake, resetGame} from "../../store/action";
 
-import {GameType, MAX_MISTAKE_COUNT} from '../../const';
+import {GameType, AppRoute, MAX_MISTAKE_COUNT} from '../../const';
 
 import Mistakes from "../mistakes/mistakes";
 import QuestionArtist from '../question-artist/question-artist';
@@ -26,13 +26,13 @@ const Game = (props) => {
 
   if (mistakes >= MAX_MISTAKE_COUNT) {
     return (
-      <Redirect to="/fail-tries"/>
+      <Redirect to={AppRoute.FAIL_TRIES}/>
     );
   }
 
   if (step >= questions.length || !question) {
     return (
-      <Redirect to="/result-success"/>
+      <Redirect to={AppRoute.RESULT_SUCCESS}/>
     );
   }
 
@@ -40,6 +40,7 @@ const Game = (props) => {
     case GameType.ARTIST:
       return (
         <QuestionArtistWrapped
+          key={step}
           question={question}
           onAnswer={onUserAnswer}
         >
@@ -49,6 +50,7 @@ const Game = (props) => {
     case GameType.GENRE:
       return (
         <QuestionGenreWrapped
+          key={step}
           question={question}
           onAnswer={onUserAnswer}
         >
@@ -57,7 +59,7 @@ const Game = (props) => {
       );
   }
 
-  return <Redirect to="/"/>;
+  return <Redirect to={AppRoute.ROOT}/>;
 };
 
 Game.propTypes = {

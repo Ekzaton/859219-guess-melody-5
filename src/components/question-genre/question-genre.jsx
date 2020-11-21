@@ -2,6 +2,8 @@ import React from "react";
 import PropTypes from "prop-types";
 import questionGenreProp from "./question-genre.prop";
 
+import {AppRoute} from "../../const";
+
 import QuestionGenreItem from "../question-genre-item/question-genre-item";
 
 const QuestionGenre = (props) => {
@@ -11,7 +13,7 @@ const QuestionGenre = (props) => {
   return (
     <section className="game game--genre">
       <header className="game__header">
-        <a className="game__back" href="#">
+        <a className="game__back" href={AppRoute.ROOT}>
           <span className="visually-hidden">Сыграть ещё раз</span>
           <img className="game__logo" src="img/melody-logo-ginger.png" alt="Угадай мелодию"/>
         </a>
