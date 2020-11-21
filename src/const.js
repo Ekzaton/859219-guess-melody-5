@@ -16,4 +16,9 @@ export const AppRoute = {
   GAME: `/game`,
 };
 
+export const APIRoute = {
+  QUESTIONS: `/questions`,
+  LOGIN: `/login`,
+};
+
 export const MAX_MISTAKE_COUNT = 3;
