@@ -7,6 +7,7 @@ import {composeWithDevTools} from "redux-devtools-extension";
 
 import {createAPI} from "./services/api";
 
+import {redirect} from "./store/middlewares/redirect";
 import rootReducer from "./store/reducers/root-reducer";
 import {requireAuthorization} from "./store/action";
 import {fetchQuestionList, checkAuth} from "./store/api-action";
@@ -22,7 +23,8 @@ const api = createAPI(
 const store = createStore(
     rootReducer,
     composeWithDevTools(
-        applyMiddleware(thunk.withExtraArgument(api))
+        applyMiddleware(thunk.withExtraArgument(api)),
+        applyMiddleware(redirect)
     )
 );
 
