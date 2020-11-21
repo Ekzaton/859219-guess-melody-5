@@ -6,6 +6,7 @@ import {MAX_MISTAKE_COUNT} from "../../const";
 import FailTries from "../fail-tries/fail-tries";
 import Game from "../game/game";
 import Login from "../login/login";
+import PrivateRoute from "../private-route/private-route";
 import ResultSuccess from "../result-success/result-success";
 import Welcome from "../welcome/welcome";
 
@@ -22,16 +23,24 @@ const App = () => {
             />
           )}
         />
-        <Route exact path="/login">
-          <Login/>
-        </Route>
         <Route exact
-          path="/result-success"
+          path="/login"
           render={({history}) => (
-            <ResultSuccess
+            <Login
               onReplayButtonClick={() => history.push(`/game`)}
             />
           )}
+        />
+        <PrivateRoute
+          exact
+          path="/result-success"
+          render={({history}) => {
+            return (
+              <ResultSuccess
+                onReplayButtonClick={() => history.push(`/game`)}
+              />
+            );
+          }}
         />
         <Route exact
           path="/fail-tries"
